@@ -1,7 +1,6 @@
-const userModel = require("../models/user.model");
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const userModel = require("../models/user.model");
 const blackListTokenModel = require("../models/blackListToken.model");
 
 module.exports.authUser = async (req, res, next) => {
@@ -23,7 +22,6 @@ module.exports.authUser = async (req, res, next) => {
     }
 
     req.user = user;
-
     return next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized" });
