@@ -87,3 +87,112 @@
         }
     }
     ```
+
+### /captains/register
+- **Description**: Register a new captain.
+- **HTTP Method**: POST
+- **Required Body**:
+    ```json
+    {
+        "fullname": {
+            "firstname": "String",
+            "lastname": "String"
+        },
+        "email": "String",
+        "password": "String",
+        "vehicle": {
+            "color": "String",
+            "plate": "String",
+            "capacity": "Number",
+            "vehicleType": "String"
+        }
+    }
+    ```
+- **Response Body**:
+    ```json
+    {
+        "token": "String",
+        "captain": {
+            "fullname": {
+                "firstname": "String",
+                "lastname": "String"
+            },
+            "email": "String",
+            "vehicle": {
+                "color": "String",
+                "plate": "String",
+                "capacity": "Number",
+                "vehicleType": "String"
+            },
+            "_id": "String",
+            "__v": 0
+        }
+    }
+    ```
+
+### /captains/login
+- **Description**: Login an existing captain.
+- **HTTP Method**: POST
+- **Required Body**:
+    ```json
+    {
+        "email": "String",
+        "password": "String"
+    }
+    ```
+- **Response Body**:
+    ```json
+    {
+        "token": "String",
+        "captain": {
+            "fullname": {
+                "firstname": "String",
+                "lastname": "String"
+            },
+            "email": "String",
+            "vehicle": {
+                "color": "String",
+                "plate": "String",
+                "capacity": "Number",
+                "vehicleType": "String"
+            },
+            "_id": "String",
+            "__v": 0
+        }
+    }
+    ```
+
+### /captains/logout
+- **Description**: Logout the current captain.
+- **HTTP Method**: GET
+- **Required Body**: None
+- **Response Body**:
+    ```json
+    {
+        "message": "Logout successfully"
+    }
+    ```
+
+### /captains/profile
+- **Description**: Get the profile of the current captain.
+- **HTTP Method**: GET
+- **Required Body**: None
+- **Response Body**:
+    ```json
+    {
+        "fullname": {
+            "firstname": "String",
+            "lastname": "String"
+        },
+        "email": "String",
+        "vehicle": {
+            "color": "String",
+            "plate": "String",
+            "capacity": "Number",
+            "vehicleType": "String"
+        },
+        "_id": "String",
+        "__v": 0
+    }
+    ```
+    
