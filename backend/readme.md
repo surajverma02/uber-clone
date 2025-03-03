@@ -4,7 +4,7 @@
 
 ### /users/register
 - **Description**: Register a new user.
-- **HTTP Method**: POST
+- **HTTP Method**: `POST`
 - **Required Body**:
     ```json
     {
@@ -34,7 +34,7 @@
 
 ### /users/login
 - **Description**: Login an existing user.
-- **HTTP Method**: POST
+- **HTTP Method**: `POST`
 - **Required Body**:
     ```json
     {
@@ -60,7 +60,7 @@
 
 ### /users/logout
 - **Description**: Logout the current user.
-- **HTTP Method**: GET
+- **HTTP Method**: `GET`
 - **Required Body**: None
 - **Response Body**:
     ```json
@@ -71,7 +71,7 @@
 
 ### /users/profile
 - **Description**: Get the profile of the current user.
-- **HTTP Method**: GET
+- **HTTP Method**: `GET`
 - **Required Body**: None
 - **Response Body**:
     ```json
@@ -90,7 +90,7 @@
 
 ### /captains/register
 - **Description**: Register a new captain.
-- **HTTP Method**: POST
+- **HTTP Method**: `POST`
 - **Required Body**:
     ```json
     {
@@ -132,7 +132,7 @@
 
 ### /captains/login
 - **Description**: Login an existing captain.
-- **HTTP Method**: POST
+- **HTTP Method**: `POST`
 - **Required Body**:
     ```json
     {
@@ -164,7 +164,7 @@
 
 ### /captains/logout
 - **Description**: Logout the current captain.
-- **HTTP Method**: GET
+- **HTTP Method**: `GET`
 - **Required Body**: None
 - **Response Body**:
     ```json
@@ -175,7 +175,7 @@
 
 ### /captains/profile
 - **Description**: Get the profile of the current captain.
-- **HTTP Method**: GET
+- **HTTP Method**: `GET`
 - **Required Body**: None
 - **Response Body**:
     ```json
