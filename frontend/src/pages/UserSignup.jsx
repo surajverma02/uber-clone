@@ -1,18 +1,35 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,  } from "react-router-dom";
+import useUserStore from "../stores/UseUserStore";
 
 const UserSignUp = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const navigate = useNavigate();
+  const { register } = useUserStore();
+
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(`email: ${email}, password: ${password}, name: ${name}`);
+    register({
+      fullname: {
+        firstname: formData.firstname,
+        lastname: formData.lastname,
+      },
+      email: formData.email,
+      password: formData.password,
+    });
 
-    setName("");
-    setEmail("");
-    setPassword("");
+    setFormData({
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -28,20 +45,41 @@ const UserSignUp = () => {
       >
         <div className="gap-1 flex flex-col">
           <h3 className="text-lg">What's your name</h3>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="bg-zinc-200 p-2.5 rounded-sm w-full"
-            type="text"
-            placeholder="John Doe"
-            required
-          />
+          <div className="flex gap-3">
+            <input
+              value={formData.firstname}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  firstname: e.target.value,
+                })
+              }
+              className="bg-zinc-200 p-2.5 rounded-sm w-full"
+              type="text"
+              placeholder="First name"
+              required
+            />
+            <input
+              value={formData.lastname}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  lastname: e.target.value,
+                })
+              }
+              className="bg-zinc-200 p-2.5 rounded-sm w-full"
+              type="text"
+              placeholder="Last name"
+            />
+          </div>
         </div>
         <div className="gap-1 flex flex-col">
           <h3 className="text-lg">What's your email</h3>
           <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             className="bg-zinc-200 p-2.5 rounded-sm w-full"
             type="email"
             placeholder="email@example.com"
@@ -51,8 +89,10 @@ const UserSignUp = () => {
         <div className="gap-1 flex flex-col">
           <h3 className="text-lg">Enter your password</h3>
           <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
             className="bg-zinc-200 p-2.5 rounded-sm w-full"
             type="password"
             placeholder="Password"
@@ -70,13 +110,13 @@ const UserSignUp = () => {
             </Link>
           </p>
         </div>
-        <hr className="text-zinc-600" />
-        <Link
-          to="/captain-signup"
-          className="bg-[#16C47F] text-white py-2.5 font-medium rounded-sm text-center"
-        >
-          Sign up as Captain
-        </Link>
+
+        <p className="text-xs text-zinc-500 absolute bottom-5">
+          This site is protected by reCAPTCHA and the{" "}
+          <span className="underline font-medium">Google Privacy Policy</span>{" "}
+          and{" "}
+          <span className="underline font-medium">Terms of Service apply</span>.
+        </p>
       </form>
     </div>
   );

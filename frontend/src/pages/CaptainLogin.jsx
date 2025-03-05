@@ -57,10 +57,9 @@ const CaptainLogin = () => {
             </Link>
           </p>
         </div>
-        <hr className="text-zinc-600" />
         <Link
           to="/login"
-          className="bg-[#FF9D23] text-white py-2.5 font-medium rounded-sm text-center"
+          className="w-[85%] bg-[#FF9D23] text-white py-2.5 font-medium rounded-sm text-center absolute bottom-6 justify-items-center"
         >
           Sign in as User
         </Link>

@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,  } from "react-router-dom";
+import useUserStore from "../stores/UseUserStore";
 
 const UserLogin = () => {
+  // const navigate = useNavigate();
+  const { login } = useUserStore();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(`email: ${email}, password: ${password}`);
+    login({ email, password });
+
+    // navigate("/home");
 
     setEmail("");
     setPassword("");
@@ -57,10 +63,9 @@ const UserLogin = () => {
             </Link>
           </p>
         </div>
-        <hr className="text-zinc-600" />
         <Link
           to="/captain-login"
-          className="bg-[#16C47F] text-white py-2.5 font-medium rounded-sm text-center"
+          className="w-[85%] bg-[#16C47F] text-white py-2.5 font-medium rounded-sm text-center absolute bottom-6 justify-items-center"
         >
           Sign in as Captain
         </Link>
