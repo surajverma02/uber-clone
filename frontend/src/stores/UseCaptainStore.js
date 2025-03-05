@@ -1,8 +1,11 @@
 import { create } from "zustand";
 import axiosInstance from "../libs/axios";
+import useUserStore from "./UseUserStore";
+
+const { setRole } = useUserStore.getState();
 
 const useCaptainStore = create((set) => ({
-  captain: null,
+  authCaptain: null,
 
   register: async (captainData) => {
     try {
@@ -10,8 +13,8 @@ const useCaptainStore = create((set) => ({
         "/captains/register",
         captainData
       );
-      set({ captain: response.data });
-      console.log("Captain registered:", captain);
+      set({ authCaptain: response.data });
+      setRole("captain");
     } catch (error) {
       console.error("Registration failed:", error.message);
     }
@@ -20,8 +23,8 @@ const useCaptainStore = create((set) => ({
   login: async (captainData) => {
     try {
       const response = await axiosInstance.post("/captains/login", captainData);
-      set({ captain: response.data });
-      console.log("Captain logged in:", captain);
+      set({ authCaptain: response.data });
+      setRole("captain");
     } catch (error) {
       console.error("Login failed:", error.message);
     }
@@ -30,20 +33,20 @@ const useCaptainStore = create((set) => ({
   logout: async () => {
     try {
       await axiosInstance.get("/captains/logout");
-      set({ captain: null });
-      console.log("Captain logged out:", captain);
+      set({ authCaptain: null });
+      setRole(null);
     } catch (error) {
       console.error("Logout failed:", error.message);
     }
   },
 
-  fetchProfile: async () => {
+  fetchCaptain: async () => {
     try {
       const response = await axiosInstance.get("/captains/profile");
-      set({ captain: response.data });
-      console.log("Captain profile:", captain);
+      set({ authCaptain: response.data });
+      setRole("captain");
     } catch (error) {
-      console.error("Fetching profile failed:", error.message);
+      console.log("Fetching captain failed:", error.response.data.message);
     }
   },
 }));

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link,  } from "react-router-dom";
 import useUserStore from "../stores/UseUserStore";
+import Logo from "../components/Logo";
 
 const UserSignUp = () => {
-  // const navigate = useNavigate();
   const { register } = useUserStore();
 
   const [formData, setFormData] = useState({
@@ -34,11 +34,7 @@ const UserSignUp = () => {
 
   return (
     <div>
-      <Link to="/">
-        <div className="h-20 pl-5 pt-8 absolute w-full">
-          <img className="h-[100%]" src="/uber.png" alt="Uber" />
-        </div>
-      </Link>
+      <Logo />
       <form
         onSubmit={submitHandler}
         className="flex flex-col p-6 gap-4 justify-center h-screen"
@@ -54,7 +50,7 @@ const UserSignUp = () => {
                   firstname: e.target.value,
                 })
               }
-              className="bg-zinc-200 p-2.5 rounded-sm w-full"
+              className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
               type="text"
               placeholder="First name"
               required
@@ -67,7 +63,7 @@ const UserSignUp = () => {
                   lastname: e.target.value,
                 })
               }
-              className="bg-zinc-200 p-2.5 rounded-sm w-full"
+              className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
               type="text"
               placeholder="Last name"
             />
@@ -80,7 +76,7 @@ const UserSignUp = () => {
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
-            className="bg-zinc-200 p-2.5 rounded-sm w-full"
+            className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
             type="email"
             placeholder="email@example.com"
             required
@@ -93,7 +89,7 @@ const UserSignUp = () => {
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })
             }
-            className="bg-zinc-200 p-2.5 rounded-sm w-full"
+            className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
             type="password"
             placeholder="Password"
             required
@@ -101,9 +97,9 @@ const UserSignUp = () => {
         </div>
         <div className="gap-1 flex flex-col">
           <button className="bg-black text-white py-2.5 font-medium rounded-sm text-center">
-            Create Account
+            Create User Account
           </button>
-          <p className="text-center">
+          <p className="text-center text-sm">
             Already have an account?{" "}
             <Link to="/login" className="text-blue-800">
               Login

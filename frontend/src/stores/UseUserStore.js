@@ -3,13 +3,15 @@ import axiosInstance from "../libs/axios";
 
 const useUserStore = create((set) => ({
   authUser: null,
+  role: null,
+
+  setRole: (newRole) => set({ role: newRole }),
 
   register: async (userData) => {
     try {
       const response = await axiosInstance.post("/users/register", userData);
-      console.log(response.data);
       set({ authUser: response.data });
-      console.log("User registered:");
+      set({ role: "user" });
     } catch (error) {
       console.error("Registration failed:", error.message);
     }
@@ -18,10 +20,10 @@ const useUserStore = create((set) => ({
   login: async (userData) => {
     try {
       const response = await axiosInstance.post("/users/login", userData);
-      console.log(response.data);
       set({ authUser: response.data });
+      set({ role: "user" });
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error("Login failed:", error.message);
     }
   },
 
@@ -29,17 +31,19 @@ const useUserStore = create((set) => ({
     try {
       await axiosInstance.get("/users/logout");
       set({ authUser: null });
+      set({ role: null });
     } catch (error) {
       console.error("Logout failed:", error.message);
     }
   },
 
-  fetchProfile: async () => {
+  fetchUser: async () => {
     try {
       const response = await axiosInstance.get("/users/profile");
       set({ authUser: response.data });
+      set({ role: "user" });
     } catch (error) {
-      console.error("Fetching profile failed:", error);
+      console.log("Fetching user failed:", error.response.data.message);
     }
   },
 }));

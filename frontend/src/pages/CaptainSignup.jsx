@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useCaptainStore from "../stores/UseCaptainStore";
+import Logo from "../components/Logo";
 
 const CaptainSignup = () => {
+  const { register } = useCaptainStore();
+
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -15,14 +19,19 @@ const CaptainSignup = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log({
+    register({
       fullname: {
         firstname: formData.firstname,
         lastname: formData.lastname,
       },
       email: formData.email,
       password: formData.password,
-
+      vehicle: {
+        color: formData.color,
+        plate: formData.plate,
+        capacity: formData.capacity,
+        vehicleType: formData.vehicleType,
+      },
     });
 
     setFormData({
@@ -39,16 +48,11 @@ const CaptainSignup = () => {
 
   return (
     <div>
-      <Link to="/">
-        <div className="h-20 pl-5 pt-8 absolute w-full">
-          <img className="h-[100%]" src="/uber.png" alt="Uber" />
-        </div>
-      </Link>
+      <Logo />
       <form
         onSubmit={submitHandler}
         className="flex flex-col p-6 gap-4 justify-center h-screen"
       >
-        
         <div className="gap-1 flex flex-col">
           <h3 className="text-lg">What's your name</h3>
           <div className="flex gap-3">
@@ -57,7 +61,7 @@ const CaptainSignup = () => {
               onChange={(e) =>
                 setFormData({ ...formData, firstname: e.target.value })
               }
-              className="bg-zinc-200 p-2.5 rounded-sm w-full"
+              className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
               type="text"
               placeholder="First name"
               required
@@ -67,7 +71,7 @@ const CaptainSignup = () => {
               onChange={(e) =>
                 setFormData({ ...formData, lastname: e.target.value })
               }
-              className="bg-zinc-200 p-2.5 rounded-sm w-full"
+              className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
               type="text"
               placeholder="Last name"
             />
@@ -81,7 +85,7 @@ const CaptainSignup = () => {
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
-            className="bg-zinc-200 p-2.5 rounded-lg w-full"
+            className="bg-zinc-200 p-2.5 rounded-lg w-full text-sm"
             type="email"
             placeholder="email@example.com"
             required
@@ -91,29 +95,80 @@ const CaptainSignup = () => {
         <div className="gap-1 flex flex-col">
           <h3 className="text-lg">Enter your password</h3>
           <input
+            required
             value={formData.password}
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })
             }
-            className="bg-zinc-200 p-2.5 rounded-lg w-full"
+            className="bg-zinc-200 p-2.5 rounded-lg w-full text-sm"
             type="password"
             placeholder="Password"
-            required
           />
         </div>
 
         <div className="gap-1 flex flex-col">
+          <h3 className="text-lg">Vehicle details</h3>
+          <div className="flex gap-3">
+            <input
+              required
+              value={formData.plate}
+              onChange={(e) =>
+                setFormData({ ...formData, plate: e.target.value })
+              }
+              className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
+              type="text"
+              placeholder="Plate Number"
+            />
+            <input
+              required
+              value={formData.color}
+              onChange={(e) =>
+                setFormData({ ...formData, color: e.target.value })
+              }
+              className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
+              type="text"
+              placeholder="Color"
+            />
+          </div>
+          <div className="flex gap-3">
+            <input
+              required
+              value={formData.capacity}
+              onChange={(e) =>
+                setFormData({ ...formData, capacity: e.target.value })
+              }
+              className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
+              type="number"
+              placeholder="capacity"
+            />
+            <select
+              required
+              value={formData.vehicleType}
+              onChange={(e) =>
+                setFormData({ ...formData, vehicleType: e.target.value })
+              }
+              className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
+            >
+              <option value="">Select Vehicle Type</option>
+              <option value="car">Car</option>
+              <option value="auto">Auto</option>
+              <option value="motorcycle">Motorcycle</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="gap-1 flex flex-col">
           <button className="bg-black text-white py-2.5 font-medium rounded-sm text-center">
-            Create Account
+            Create Captain Account
           </button>
-          <p className="text-center">
+          <p className="text-center text-sm">
             Already have an account?{" "}
             <Link to="/captain-login" className="text-blue-800">
               Login
             </Link>
           </p>
         </div>
-        
+
         <p className="text-xs text-zinc-500 absolute bottom-5">
           This site is protected by reCAPTCHA and the{" "}
           <span className="underline font-medium">Google Privacy Policy</span>{" "}

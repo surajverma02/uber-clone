@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link,  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useUserStore from "../stores/UseUserStore";
+import Logo from "../components/Logo";
 
 const UserLogin = () => {
-  // const navigate = useNavigate();
   const { login } = useUserStore();
-
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,19 +13,13 @@ const UserLogin = () => {
     e.preventDefault();
     login({ email, password });
 
-    // navigate("/home");
-
     setEmail("");
     setPassword("");
   };
 
   return (
     <div>
-      <Link to="/">
-        <div className="h-20 pl-5 pt-8 absolute w-full">
-          <img className="h-[100%]" src="/uber.png" alt="Uber" />
-        </div>
-      </Link>
+      <Logo />
       <form
         onSubmit={submitHandler}
         className="flex flex-col p-6 gap-4 justify-center h-screen"
@@ -35,7 +29,7 @@ const UserLogin = () => {
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-zinc-200 p-2.5 rounded-sm w-full"
+            className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
             type="text"
             placeholder="email@example.com"
             required
@@ -46,7 +40,7 @@ const UserLogin = () => {
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="bg-zinc-200 p-2.5 rounded-sm w-full"
+            className="bg-zinc-200 p-2.5 rounded-sm w-full text-sm"
             type="password"
             placeholder="Password"
             required
@@ -56,7 +50,7 @@ const UserLogin = () => {
           <button className="bg-[#272727] text-white py-2.5 font-medium rounded-sm text-center">
             Login
           </button>
-          <p className="text-center">
+          <p className="text-center text-sm">
             New here?{" "}
             <Link to="/signup" className="text-blue-800">
               Create new account

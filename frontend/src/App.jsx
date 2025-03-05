@@ -9,43 +9,67 @@ import CaptainLogin from "./pages/CaptainLogin";
 import CaptainSignup from "./pages/CaptainSignup";
 
 import useUserStore from "./stores/UseUserStore";
+import useCaptainStore from "./stores/UseCaptainStore";
+import CaptainHome from "./pages/CaptainHome";
+import PageNotFound from "./components/PageNotFound";
 
 const App = () => {
-  const { authUser, fetchProfile } = useUserStore();
+  const { authCaptain, fetchCaptain } = useCaptainStore();
+  const { role, authUser, fetchUser } = useUserStore();
 
   useEffect(() => {
-    async function fetchData() {
-      await fetchProfile();
-    }
-    fetchData();
-  }, [fetchProfile]);
+    fetchUser();
+    fetchCaptain();
+  }, [role]);
 
   return (
     <div>
       <Routes>
         <Route
-          path="/"
-          element={!authUser ? <StartPage /> : <Navigate to="/home" />}
+          path="/authenticating..."
+          element={
+            authUser ? <Navigate to="/home" /> : <Navigate to="/captain-home" />
+          }
         />
-        <Route 
-          path="/home" 
-          element={authUser ? <Home /> : <Navigate to="/login" />} 
-        />  
+        <Route
+          path="/"
+          element={
+            !(authUser || authCaptain) ? (
+              <StartPage />
+            ) : (
+              <Navigate to="/authenticating..." />
+            )
+          }
+        />
+        <Route
+          path="/home"
+          element={authUser ? <Home /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/captain-home"
+          element={
+            authCaptain ? <CaptainHome /> : <Navigate to="/captain-login" />
+          }
+        />
         <Route
           path="/login"
-          element={!authUser ? <UserLogin /> : <Navigate to="/home" />}
+          element={!(authUser || authCaptain) ? <UserLogin /> : <Navigate to="/" />}
         />
         <Route
           path="/signup"
-          element={!authUser ? <UserSignup /> : <Navigate to="/home" />}
+          element={!(authUser || authCaptain) ? <UserSignup /> : <Navigate to="/" />}
         />
         <Route
           path="/captain-login"
-          element={!authUser ? <CaptainLogin /> : <Navigate to="/home" />}
+          element={!(authUser || authCaptain) ? <CaptainLogin /> : <Navigate to="/" />}
         />
         <Route
           path="/captain-signup"
-          element={!authUser ? <CaptainSignup /> : <Navigate to="/home" />}
+          element={!(authUser || authCaptain) ? <CaptainSignup /> : <Navigate to="/" />}
+        />
+        <Route
+          path="*"
+          element={<PageNotFound />}
         />
       </Routes>
     </div>
