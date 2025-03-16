@@ -13,6 +13,8 @@ import useCaptainStore from "./stores/UseCaptainStore";
 import CaptainHome from "./pages/CaptainHome";
 import PageNotFound from "./components/PageNotFound";
 
+import 'remixicon/fonts/remixicon.css'
+
 const App = () => {
   const { authCaptain, fetchCaptain } = useCaptainStore();
   const { role, authUser, fetchUser } = useUserStore();

@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <Link to="/">
       <div className="h-22 pl-5 mt-3 absolute w-full">
-        <img className="h-[100%]" src="/uber.svg" alt="Uber" />
+        <img className="h-[100%]" src="/uberlogo.svg" alt="Uber" />
       </div>
     </Link>
   );
