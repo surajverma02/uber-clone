@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Riding from "./pages/Riding";
 import StartPage from "./pages/StartPage";
 import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
@@ -46,6 +47,10 @@ const App = () => {
         <Route
           path="/home"
           element={authUser ? <Home /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/riding"
+          element={authUser ? <Riding /> : <Navigate to="/login" />}
         />
         <Route
           path="/captain-home"

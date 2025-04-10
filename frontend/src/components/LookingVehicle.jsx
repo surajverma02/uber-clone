@@ -1,6 +1,6 @@
 import React from "react";
 
-const LookingVehicle = ({ setVehicleSearch, setDriverSearch }) => {
+const LookingVehicle = ({ setVehicleSearch }) => {
   return (
     <div className="bg-white flex flex-col gap-2 px-5 py-4">
       <h3 onClick={() => setVehicleSearch(false)} className="text-center">
@@ -52,16 +52,6 @@ const LookingVehicle = ({ setVehicleSearch, setDriverSearch }) => {
           <p className="leading-5 text-zinc-600">Cash Cash</p>
         </div>
       </div>
-
-      <button
-        onClick={() => {
-          setVehicleSearch(false);
-          setDriverSearch(true);
-        }}
-        className="bg-[#5CB338] text-white py-2.5 font-medium rounded-sm text-center"
-      >
-        Driver Details
-      </button>
     </div>
   );
 };

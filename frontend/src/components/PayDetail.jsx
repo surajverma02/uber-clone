@@ -1,10 +1,15 @@
 import React from "react";
 
-const DriverDetail = () => {
+const PayDetail = ({ setPayDetail }) => {
   return (
-    <div className="bg-white flex flex-col gap-2 px-5 py-10">
-      <h3 className="text-left font-semibold text-xl mb-2">
-        Meet at the Pickup point
+    <div className="bg-white flex flex-col gap-2 px-5 py-6">
+
+      <h3 onClick={() => setPayDetail(false)} className="text-center">
+        <i className="text-lg ri-arrow-down-wide-line"></i>
+      </h3>
+
+      <h3 onClick={() => setPayDetail(true)} className="text-center">
+        <i className="text-lg ri-arrow-up-wide-line"></i>
       </h3>
 
       <hr className="text-zinc-400" />
@@ -17,6 +22,8 @@ const DriverDetail = () => {
           <h3 className="text-zinc-600">White Maruti Suzuki LXI</h3>
         </div>
       </div>
+
+      <hr className="text-zinc-400" />
 
       <div className="flex gap-4 p-1 items-center">
         <h3>
@@ -33,4 +40,4 @@ const DriverDetail = () => {
   );
 };
 
-export default DriverDetail;
+export default PayDetail;

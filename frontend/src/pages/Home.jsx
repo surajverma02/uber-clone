@@ -3,6 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 import Logo from "../components/Logo";
+import RideDetail from "../components/RideDetail";
 import useUserStore from "../stores/UseUserStore";
 import LocationSearchPanel from "../components/LocationSearchPanel";
 import ChooseVehicle from "../components/ChooseVehicle";
@@ -126,6 +127,11 @@ const Home = () => {
     return (
       <section>
         <Logo />
+        <RideDetail
+          driverSearch={driverSearch}
+          setDriverSearch={setDriverSearch}
+        />
+
         <section className="h-screen w-screen">
           {/* Map Container */}
           <div className="h-screen w-screen ">
@@ -223,10 +229,7 @@ const Home = () => {
             ref={vehicleSearchRef}
             className="z-10 w-screen absolute -bottom-full"
           >
-            <LookingVehicle
-              setVehicleSearch={setVehicleSearch}
-              setDriverSearch={setDriverSearch}
-            />
+            <LookingVehicle setVehicleSearch={setVehicleSearch} />
           </div>
 
           {/* Waiting for driver  */}
@@ -234,7 +237,7 @@ const Home = () => {
             ref={driverSearchRef}
             className="z-20 w-screen absolute -bottom-full"
           >
-            <DriverDetail setDriverSearch={setDriverSearch} />
+            <DriverDetail />
           </div>
         </section>
       </section>
